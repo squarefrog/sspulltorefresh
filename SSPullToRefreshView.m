@@ -221,6 +221,9 @@
 	
 	// Update the content inset
 	_scrollView.contentInset = inset;
+    
+    // If scrollView is on top, scroll again to the top (needed for scrollViews with content > scrollView).
+    if (_scrollView.contentOffset.y == 0) [_scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 
 	// Tell the delegate
 	if ([self.delegate respondsToSelector:@selector(pullToRefreshView:didUpdateContentInset:)]) {
